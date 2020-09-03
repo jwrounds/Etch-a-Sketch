@@ -2,6 +2,7 @@ const container = document.querySelector('#container');
 const eraseButton = document.querySelector('#erase');
 const pixelResize = document.querySelector('#pixel-size');
 const pixelResizeButton = document.querySelector('#resize-button'); 
+let drawing = false;
 
 // generate an x by x <div> grid, one row at a time
 
@@ -15,8 +16,17 @@ function createGrid (x, y) {
 
       // calls helper funtion to render <div> black on mouse over, mimicking large pen
 
-      newDiv.addEventListener('mouseover', e => {
+      newDiv.addEventListener('mousemove', e => {
         drawOn(e.target);
+      });
+
+      newDiv.addEventListener('mousedown', e => {
+        e.preventDefault();
+        drawing = true;
+      });
+
+      newDiv.addEventListener('mouseup', e => {
+        drawing = false;
       });
 
       container.appendChild(newDiv);
@@ -27,7 +37,9 @@ function createGrid (x, y) {
 // helper funtion to render <div> background black
 
 function drawOn (element) {
-  element.style.backgroundColor = 'black';
+  if (drawing) {
+    element.style.backgroundColor = 'black';
+  }
 }
 
 // helper function to erase all <div> background colors
@@ -57,7 +69,7 @@ function resizeGrid (size) {
 
 pixelResizeButton.addEventListener('click', e => {
   resizeGrid(pixelResize.value);
-  
+
 });
 
 eraseButton.addEventListener('click', e => {
