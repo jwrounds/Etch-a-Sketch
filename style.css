@@ -9,9 +9,14 @@
   border: solid;
 }
 
-button {
+#erase {
   position: absolute;
   left: 28.5vw;
   top: 5vh;
 }
 
+#resize {
+  position: absolute;
+  left: 50vw;
+  top: 5vh;
+}

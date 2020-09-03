@@ -1,5 +1,7 @@
 const container = document.querySelector('#container');
 const eraseButton = document.querySelector('#erase');
+const pixelResize = document.querySelector('#pixel-size');
+const pixelResizeButton = document.querySelector('#resize-button'); 
 
 // generate an x by x <div> grid, one row at a time
 
@@ -36,9 +38,31 @@ function eraseAll (elements) {
   }
 }
 
+// grid removal helper function
+
+function removeGrid (parentNode, node) {
+  let nextNode = node.nextSibling;
+  parentNode.removeChild(node);
+  if (nextNode !== null) {
+    removeGrid(parentNode, nextNode);
+  }
+}
+
+// grid resize helper function
+
+function resizeGrid (size) {
+  removeGrid(container, container.firstChild);
+  createGrid(size, size);
+}
+
+pixelResizeButton.addEventListener('click', e => {
+  resizeGrid(pixelResize.value);
+  
+});
+
 eraseButton.addEventListener('click', e => {
   eraseAll(document.querySelectorAll('.flex'));
 });
 
 
-createGrid(12, 12);
+createGrid(16, 16);
