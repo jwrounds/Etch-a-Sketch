@@ -1,11 +1,14 @@
 #container {
+  position: absolute;
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
-  width: 100vw;
+  height: 800px;
+  width: 800px;
+  left: 28.5vw;
+  top: 10vh;
+  border: solid;
 }
 
-.flex {
-  width: 12.5%;
-  height: 12.5%;
+.flex:hover {
+  background-color: black;
 }
